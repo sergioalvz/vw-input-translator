@@ -1,5 +1,3 @@
-import AssemblyKeys._ // put this at the top of the file
+import AssemblyKeys._
 
 assemblySettings
-
-// your assembly settings here

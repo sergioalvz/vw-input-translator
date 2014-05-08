@@ -4,19 +4,18 @@ import java.security.MessageDigest
 
 object Main {
   def main(args:Array[String]):Unit = {
-    Parser.parser.parse(args, Configuration()) map { config =>
-      //do things
-    } getOrElse {
-      println("Some error :(")
-    }
+    Parser.parse(args, Configuration()) map { config =>
+      val file = config.file
+      val decimals = config.decimals
+      val outputFileName = s"${file}_vw_${decimals}_decimals"
 
-    // val tsv = args(0)
-    // val decimals = args(1).toInt
-    // val outputFileName = s"${tsv}_vw_${decimals}_decimals"
-    // Source.fromFile(tsv).getLines.foreach(line => {
-    //   val formatted = formatLine(line, decimals)
-    //   writeLine(formatted, outputFileName)
-    // })
+      if(decimals > -1){
+        Source.fromFile(file).getLines.foreach(line => {
+          val formatted = formatLine(line, decimals)
+          writeLine(formatted, outputFileName)
+        })
+      }
+    }
   }
 
   def writeLine(line:String, file:String):Unit = {
