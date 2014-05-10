@@ -2,7 +2,7 @@ import java.io.File
 
 case class Configuration(inout:Boolean = false, decimals:Int = -1, file:File = null) {}
 
-object Parser {
+object CLIParser {
   private[this] val parser = new scopt.OptionParser[Configuration]("vw-input-translator") {
     head("vw-input-translator", "1.0")
     opt[Boolean]("inout") action { (x, c) => c.copy(inout = x) } text("Creates an input file for binary classification")
